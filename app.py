@@ -3,12 +3,12 @@ import mysql.connector
 import os
 from dotenv import load_dotenv
 
-# ✅ Load environment variables
+#  Load environment variables
 load_dotenv()
 
 app = Flask(__name__)
 
-# ✅ Database connection details (still using .env but without a function for simplicity)
+#  Database connection details using .env
 db_config = {
     "host": os.getenv("MYSQL_HOST"),
     "user": os.getenv("MYSQL_USER"),
@@ -16,7 +16,7 @@ db_config = {
     "database": os.getenv("MYSQL_DATABASE")
 }
 
-# ✅ GET endpoint to fetch sales data by date range
+# GET endpoint to fetch sales data by date range
 @app.route('/get_sales', methods=['GET'])
 def get_sales():
     start_date = request.args.get('start_date')
@@ -30,7 +30,7 @@ def get_sales():
     conn.close()
     return jsonify(data)
 
-# ✅ POST endpoint to add a new sale
+#  POST endpoint to add a new sale
 @app.route('/add_sale', methods=['POST'])
 def add_sale():
     data = request.json
